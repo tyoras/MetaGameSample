@@ -3,12 +3,12 @@ package yoan.sample.game.engines;
 import yoan.game.Game;
 import yoan.game.Log;
 import yoan.game.engines.GraphicEngine;
-import yoan.game.engines.events.EngineEvent;
+import yoan.sample.game.engines.events.SampleEngineEvent;
 
-public class SampleGraphicEngine extends GraphicEngine {
+public class SampleGraphicEngine extends GraphicEngine<SampleEngineEvent> {
 	private int i = 0;
 
-	public SampleGraphicEngine(Game parent) {
+	public SampleGraphicEngine(Game<SampleEngineEvent> parent) {
 		super(parent);
 		Log.debug("création du GraphicEngine");
 	}
@@ -19,6 +19,6 @@ public class SampleGraphicEngine extends GraphicEngine {
 		processQueue();
 	}
 
-	protected void processEvent(EngineEvent event) {
+	protected void processEvent(SampleEngineEvent event) {
 	}
 }

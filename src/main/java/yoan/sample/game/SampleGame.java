@@ -6,8 +6,9 @@ import yoan.game.engines.Module;
 import yoan.sample.game.engines.SampleGameEngine;
 import yoan.sample.game.engines.SampleGraphicEngine;
 import yoan.sample.game.engines.SampleSoundEngine;
+import yoan.sample.game.engines.events.SampleEngineEvent;
 
-public class SampleGame extends Game {
+public class SampleGame extends Game<SampleEngineEvent> {
 
 	public void initModules() {
 		Log.debug("init des modules");

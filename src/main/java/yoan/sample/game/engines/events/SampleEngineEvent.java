@@ -10,7 +10,7 @@ public class SampleEngineEvent extends EngineEvent {
 	}
 
 	public String getData() {
-		return this.data;
+		return data;
 	}
 
 	public void setData(String data) {
