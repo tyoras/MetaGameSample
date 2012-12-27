@@ -1,8 +1,9 @@
 package yoan.sample.game.engines;
 
 import yoan.game.Game;
-import yoan.game.Log;
 import yoan.game.engines.GraphicEngine;
+import yoan.game.util.errors.GameException;
+import yoan.game.util.logs.Log;
 import yoan.sample.game.engines.events.SampleEngineEvent;
 
 public class SampleGraphicEngine extends GraphicEngine<SampleEngineEvent> {
@@ -10,15 +11,20 @@ public class SampleGraphicEngine extends GraphicEngine<SampleEngineEvent> {
 
 	public SampleGraphicEngine(Game<SampleEngineEvent> parent) {
 		super(parent);
-		Log.debug("création du GraphicEngine");
 	}
 
-	public void frame() {
+	public void frame() throws GameException {
 		this.i += 1;
-		Log.debug("frame " + this.i + " du GraphicEngine");
+		Log.debug(getType(), "frame " + this.i);
 		processQueue();
 	}
 
 	protected void processEvent(SampleEngineEvent event) {
+	}
+
+	@Override
+	protected boolean checkInitArgs(String... initArgs){
+		//pas d'argument d'initialisation
+		return true;
 	}
 }

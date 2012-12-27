@@ -1,8 +1,10 @@
 package yoan.sample.game.engines;
 
 import yoan.game.Game;
-import yoan.game.Log;
 import yoan.game.engines.SoundEngine;
+import yoan.game.util.errors.GameErrors;
+import yoan.game.util.errors.GameException;
+import yoan.game.util.logs.Log;
 import yoan.sample.game.engines.events.SampleEngineEvent;
 
 public class SampleSoundEngine extends SoundEngine<SampleEngineEvent> {
@@ -10,21 +12,25 @@ public class SampleSoundEngine extends SoundEngine<SampleEngineEvent> {
 
 	public SampleSoundEngine(Game<SampleEngineEvent> parent) {
 		super(parent);
-		Log.debug("création du SoundEngine");
 	}
 
-	public void frame() {
+	public void frame() throws GameException {
 		i++;
-		Log.debug("frame " + i + " du SoundEngine");
+		Log.debug(getType(), "frame " + i);
 		processQueue();
 	}
 
-	protected void processEvent(SampleEngineEvent event) {
+	protected void processEvent(SampleEngineEvent event) throws GameException {
 		if (event != null) {
-			Log.debug("SoundEngine emet le bruit : "+ event.getData());
+			Log.debug(getType(), "emet le bruit : "+ event.getData());
 		} else {
-			Log.error("Problème avec le SoundEngine");
+			GameErrors.throwError(getType(), "Problème");
 		}
-		
+	}
+
+	@Override
+	protected boolean checkInitArgs(String... initArgs){
+		//pas d'argument d'initialisation
+		return true;
 	}
 }
